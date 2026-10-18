@@ -1,0 +1,15 @@
+# Core deep learning and numerical packages
+torch>=2.0.0
+numpy>=1.23.0
+scipy>=1.9.0
+
+# Configuration, logging and utilities
+pyyaml>=6.0
+tqdm>=4.65.0
+
+# Visualization
+matplotlib>=3.7.0
+
+# Notebook support
+jupyter>=1.0.0
+ipykernel>=6.20.0

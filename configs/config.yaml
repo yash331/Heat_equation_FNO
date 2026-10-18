@@ -1,0 +1,37 @@
+# Configuration for 1D Heat Equation Fourier Neural Operator (FNO)
+# Parameterized by effective diffusion product theta = c * T (Fourier number)
+
+data:
+  length: 1.0              # Spatial domain [0, L]
+  num_samples_train: 2000  # Number of training samples
+  num_samples_val: 400     # Number of validation samples
+  num_samples_test: 400    # Number of test samples
+  spatial_res: 128         # Default spatial grid resolution
+  # Effective diffusion product theta = c * T (diffusion constant c times time T)
+  theta_min: 0.0001        # Minimum c * T product (near t=0 / low diffusivity)
+  theta_max: 0.05          # Maximum c * T product (high diffusion / long time)
+  grf_tau: 5.0             # Gaussian Random Field correlation length parameter
+  grf_d: 2.0               # Gaussian Random Field smoothness parameter
+  save_dir: "data"         # Directory to save generated datasets
+
+model:
+  modes: 16                # Number of low-frequency Fourier modes retained
+  width: 64                # Hidden channel width
+  in_channels: 3           # Input channels: [u0(x), x_grid, theta = c * T]
+  out_channels: 1          # Output channel: [u(x, t)]
+  num_layers: 4            # Number of Fourier neural operator layers
+
+train:
+  batch_size: 32           # Mini-batch size
+  epochs: 150              # Number of training epochs
+  learning_rate: 0.001     # Initial learning rate
+  weight_decay: 0.0001     # L2 regularization factor
+  step_size: 50            # Learning rate decay step (epochs)
+  gamma: 0.5               # Learning rate decay factor
+  device: "auto"           # "auto", "cuda", "mps", or "cpu"
+  checkpoint_dir: "checkpoints"
+  save_best: true
+
+eval:
+  test_resolutions: [64, 128, 256, 512, 1024] # Multi-resolution zero-shot evaluation
+  plot_dir: "results"      # Directory to save evaluation visualizations

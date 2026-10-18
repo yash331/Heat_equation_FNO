@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Checkpoints and models
+checkpoints/*.pth
+!checkpoints/.gitkeep
+
+# Generated figures
+results/*.png
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# OS and IDE files
+.DS_Store
+.idea/
+.vscode/
+
+# Jupyter checkpoint files
+.ipynb_checkpoints/
